@@ -7,7 +7,7 @@
 }
 
 .general--section {
-  @apply flex justify-between;
+  @apply flex justify-between items-center;
 }
 
 .logo {
@@ -15,9 +15,29 @@
 }
 
 .menu--tabs {
-  @apply flex gap-x-8 font-medium cursor-pointer;
+  @apply flex gap-x-6 font-medium cursor-pointer;
 }
 
 .header--icons {
   @apply flex text-xl gap-x-8;
+}
+
+.mobile-header {
+  @apply px-8 py-4 flex justify-between items-center w-screen;
+}
+
+.mobile-logo {
+  @apply text-xl font-bold cursor-pointer;
+}
+
+.menu-overlay {
+  @apply px-8 py-6 absolute top-0 left-0 z-[1] w-screen h-screen bg-slate-700 text-white;
+}
+
+.mobile-menu--tabs li{
+  @apply my-5;
+}
+
+.mobile-profile {
+  @apply my-5 text-xl font-bold;
 }

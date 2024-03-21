@@ -5,3 +5,7 @@
 body {
   font-family: sans-serif;
 }
+
+.app--container {
+  @apply flex justify-center items-center my-10;
+}

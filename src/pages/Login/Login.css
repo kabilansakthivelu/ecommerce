@@ -1,0 +1,15 @@
+.container {
+  @apply border-2 p-6 border-slate-400 rounded-2xl w-2/5;
+}
+
+.container--heading {
+  @apply text-2xl font-semibold text-center;
+}
+
+.container--sub-heading {
+  @apply text-center mt-6 text-xl;
+}
+
+.container-message {
+  @apply text-center my-4;
+}
