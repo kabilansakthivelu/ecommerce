@@ -1,0 +1,1 @@
+export const BANNER_CONTENT = 'Get 10% off on business sign up';
