@@ -18,7 +18,7 @@ const Login = () => {
         </div>
         <button className="container--button">LOGIN</button>
         <hr />
-        <p className="container--navigation">Don't have an account? <Link to="/register">SIGN UP</Link></p>
+        <p className="container--navigation">Don't have an Account? <Link to="/register">SIGN UP</Link></p>
       </form>
     </div>
     );
