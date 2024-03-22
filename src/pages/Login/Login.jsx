@@ -1,27 +1,41 @@
-import { Link } from 'react-router-dom'
-import "./Login.css";
+import { Link } from "react-router-dom";
+import ComponentWrapper from "../../components/ComponentWrapper";
+import SectionInfo from "../../components/SectionInfo";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+import Footer from "../../components/Footer";
+import {
+  HEADING,
+  SUB_HEADING,
+  MESSAGE,
+  REDIRECTION_TEXT,
+  NEXT_PAGE_TEXT,
+} from "./constants";
 
 const Login = () => {
   return (
-    <div className="container">
-      <h3 className="container--heading">Login</h3>
-      <p className="container--sub-heading">Welcome back to ECOMMERCE</p>
-      <p className="container--message">The next gen business marketplace</p>
+    <ComponentWrapper>
+      <SectionInfo
+        showHeading
+        showSubHeading
+        showMessage
+        heading={HEADING}
+        subHeading={SUB_HEADING}
+        message={MESSAGE}
+      />
       <form>
-        <div className="container--formField">
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" placeholder="Enter" className="container--formField__input"/>
-        </div>
-      <div className="container--formField">
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="Enter" className="container--formField__input"/>
-        </div>
-        <button className="container--button">LOGIN</button>
+        <Input label="Email" identifier="email" type="email" />
+        <Input label="Password" identifier="password" type="password" />
+        <Button title="LOGIN" />
         <hr />
-        <p className="container--navigation">Don't have an Account? <Link to="/register">SIGN UP</Link></p>
+        <Footer
+          redirectionPath="/register"
+          redirectionText={REDIRECTION_TEXT}
+          nextPage={NEXT_PAGE_TEXT}
+        />
       </form>
-    </div>
-    );
+    </ComponentWrapper>
+  );
 };
 
 export default Login;

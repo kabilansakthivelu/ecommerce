@@ -1,28 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import ComponentWrapper from "../../components/ComponentWrapper";
+import SectionInfo from "../../components/SectionInfo";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+import Footer from "../../components/Footer";
+import { HEADING, REDIRECTION_TEXT, NEXT_PAGE_TEXT } from "./constants";
 
 const Register = () => {
   return (
-    <div className="container">
-      <h3 className="container--heading">Create your account</h3>
+    <ComponentWrapper>
+      <SectionInfo showHeading heading="Create your account" />
       <form>
-        <div className="container--formField">
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" placeholder="Enter" className="container--formField__input"/>
-          </div>
-        <div className="container--formField">
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" placeholder="Enter" className="container--formField__input"/>
-        </div>
-      <div className="container--formField">
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="Enter" className="container--formField__input"/>
-        </div>
-        <button className="container--button">CREATE ACCOUNT</button>
+        <Input label="Name" identifier="name" type="name" />
+        <Input label="Email" identifier="email" type="email" />
+        <Input label="Password" identifier="password" type="password" />
+        <Button title={HEADING} />
         <hr />
-        <p className="container--navigation">Have an Account? <Link to="/login">LOGIN</Link></p>
+        <Footer
+          redirectionPath="/login"
+          redirectionText={REDIRECTION_TEXT}
+          nextPage={NEXT_PAGE_TEXT}
+        />
       </form>
-    </div>
-    );
+    </ComponentWrapper>
+  );
 };
 
 export default Register;

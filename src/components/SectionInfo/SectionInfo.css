@@ -1,0 +1,11 @@
+.heading {
+  @apply text-xl md:text-2xl font-semibold text-center;
+}
+
+.sub-heading {
+  @apply text-center mt-6 text-lg md:text-xl;
+}
+
+.message {
+  @apply text-center my-4;
+}
