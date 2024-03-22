@@ -2,6 +2,10 @@
   @apply flex flex-col my-6 gap-y-2;
 }
 
-.inputField {
+.inputWrapper {
   @apply w-full py-2 border-2 border-slate-400 rounded-lg h-10 md:h-12 px-4;
+}
+
+.input-field {
+  @apply w-[85%] h-full outline-none;
 }

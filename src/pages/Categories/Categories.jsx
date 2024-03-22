@@ -1,7 +1,18 @@
-import "./Categories.css";
+import ComponentWrapper from "../../components/ComponentWrapper";
+import SectionInfo from "../../components/SectionInfo";
+import { HEADING, MESSAGE } from "./constants";
 
 const Categories = () => {
-  return <p>Categories</p>;
+  return (
+    <ComponentWrapper>
+      <SectionInfo
+        showHeading
+        showMessage
+        heading={HEADING}
+        message={MESSAGE}
+      />
+    </ComponentWrapper>
+  );
 };
 
 export default Categories;
