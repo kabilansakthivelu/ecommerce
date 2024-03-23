@@ -1,0 +1,23 @@
+.sectionHeader {
+  @apply text-xl;
+}
+
+.loader-placeholder {
+  @apply font-bold text-lg flex items-center justify-center h-20;
+}
+
+.categories {
+  @apply my-4;
+}
+
+.category {
+  @apply my-2;
+}
+
+.category--input {
+  @apply checked:accent-black scale-150;
+}
+
+.category--label {
+  @apply capitalize pl-4;
+}

@@ -1,0 +1,7 @@
+.pagination--container {
+  @apply flex items-center justify-center gap-x-3 mt-8 text-gray-400;
+}
+
+[data-key] {
+  @apply w-4 cursor-pointer text-center;
+}

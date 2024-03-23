@@ -1,5 +1,5 @@
 .header {
-  @apply px-8 py-4 flex flex-col gap-y-3;
+  @apply px-8 py-4 flex flex-col gap-y-3 z-10;
 }
 
 .userInfo--section {
