@@ -1,11 +1,10 @@
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import './Banner.css';
 
 const Banner = ({ content }) => {
   return (<article className="banner--container">
-    <MdOutlineKeyboardArrowLeft />
+    <div>&lt;</div>
     <p>{content}</p>
-    <MdOutlineKeyboardArrowRight />
+    <div>&gt;</div>
   </article>)
 }
 

@@ -70,7 +70,7 @@ const Header = () => {
         <div className="userInfo--section">
           <span>Help</span>
           <span>Orders & Returns</span>
-          {user && <span>Hi, John </span>}
+          {user && <span>Hi, User </span>}
           {renderLogoutButton()}
         </div>
         <div className="general--section">
@@ -89,7 +89,7 @@ const Header = () => {
     return (
       <section className="menu-overlay">
         <CgClose onClick={() => setShowMenuOverlay(false)} />
-        {user && <p className="mobile-profile">Hi, John </p>}
+        {user && <p className="mobile-profile">Hi, User </p>}
         <ul className="mobile-menu--tabs">{renderMenuList()}</ul>
         {renderLogoutButton()}
       </section>
