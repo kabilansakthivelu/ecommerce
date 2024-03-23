@@ -41,3 +41,7 @@
 .mobile-profile {
   @apply my-5 text-xl font-bold;
 }
+
+.logout--button {
+  @apply font-bold;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import withAuthentication from '../../hoc/withAuthentication';
 import ComponentWrapper from "../../components/ComponentWrapper";
 import SectionInfo from "../../components/SectionInfo";
 import Pagination from "../../components/Pagination";
@@ -76,4 +77,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default withAuthentication(Categories);

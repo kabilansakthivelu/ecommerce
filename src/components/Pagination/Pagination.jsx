@@ -21,6 +21,7 @@ const Pagination = ({
             fontWeight: isActivePage ? "bold" : "inherit",
           }}
           data-key={i}
+          key={i}
         >
           {i}
         </div>,

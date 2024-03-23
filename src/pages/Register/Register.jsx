@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import { toast } from "react-toastify";
+import { auth, db } from "../../firebase";
 import ComponentWrapper from "../../components/ComponentWrapper";
 import SectionInfo from "../../components/SectionInfo";
 import Input from "../../components/Input";
@@ -13,12 +17,33 @@ import {
 
 const Register = () => {
   const [newUserInfo, setNewUserInfo] = useState(NEW_USER_INFO_INITIAL_STATE);
+  const navigate = useNavigate();
 
   const handleNewUserInfoChange = (field, value) => {
     setNewUserInfo({ ...newUserInfo, [field]: value });
   };
 
   const { name, email, password } = newUserInfo;
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    if (!name.trim().length) {
+      toast.error("Please enter a valid username.", { position: "top-right" });
+    } else {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await db
+          .collection("users")
+          .doc(auth.currentUser.uid)
+          .set({ name });
+        navigate("/");
+      } catch (error) {
+        let error1 = error.message.split(":");
+        let error2 = error1[1].split("(");
+        toast.error(error2[0], { position: "top-right" });
+      }
+    }
+  };
 
   return (
     <ComponentWrapper>
@@ -45,7 +70,7 @@ const Register = () => {
           value={password}
           handleChange={handleNewUserInfoChange}
         />
-        <Button title={HEADING} />
+        <Button title={HEADING} handleClick={handleSignUp} />
         <hr />
         <Footer
           redirectionPath="/login"

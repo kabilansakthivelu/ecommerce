@@ -1,4 +1,8 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import { toast } from 'react-toastify';
+import { auth, db } from "../../firebase";
 import ComponentWrapper from "../../components/ComponentWrapper";
 import SectionInfo from "../../components/SectionInfo";
 import Input from "../../components/Input";
@@ -16,6 +20,7 @@ import {
 const Login = () => {
   const [userInfo, setUserInfo] = useState(USER_INFO_INITIAL_STATE);
   const passwordRef = useRef();
+  const navigate = useNavigate();
 
   const handleUserInfoChange = (field, value) => {
     setUserInfo({ ...userInfo, [field]: value });
@@ -29,10 +34,32 @@ const Login = () => {
   };
 
   const getInputSuffix = () => {
-    return <span onClick={handleShowPasswordToggle} style={{ cursor: 'pointer' }}>Show</span>;
-  }
+    return (
+      <span onClick={handleShowPasswordToggle} style={{ cursor: "pointer" }}>
+        Show
+      </span>
+    );
+  };
 
   const { email, password } = userInfo;
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await db
+        .collection("users")
+        .doc(auth.currentUser.uid)
+        .get()
+        .then((snapshot) => {
+          navigate("/");
+        });
+    } catch (error) {
+      let error1 = error.message.split(":");
+      let error2 = error1[1].split("(");
+      toast.error(error2[0], { position: 'top-right' });
+    }
+  };
 
   return (
     <ComponentWrapper>
@@ -61,7 +88,7 @@ const Login = () => {
           suffix={getInputSuffix()}
           ref={passwordRef}
         />
-        <Button title="LOGIN" />
+        <Button title="LOGIN" handleClick={handleSignIn} />
         <hr />
         <Footer
           redirectionPath="/register"
