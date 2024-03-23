@@ -1,22 +1,40 @@
-import { forwardRef } from 'react';
+import { useState, useRef } from 'react';
 import PropTypes from "prop-types";
 import "./Input.css";
 
-const Index = forwardRef(({
+const Index = ({
   label,
   value,
   handleChange,
   type,
   identifier,
   placeholder = "Enter",
-  suffix,
-}, ref) => {
-  return (
+  enableShowPassword
+}) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const inputRef = useRef();
+
+  const handleShowPasswordToggle = () => {
+    if (inputRef && inputRef.current) {
+      const currentType = inputRef.current.type;
+      inputRef.current.type = currentType === "text" ? "password" : "text";
+      setShowPassword(!showPassword);
+    }
+  };
+
+  const getInputSuffix = () => {
+    return (
+      <span onClick={handleShowPasswordToggle} style={{ cursor: "pointer" }}>
+        {showPassword ? 'Hide' : 'Show'}
+      </span>
+    );
+  };
+  return (    
     <div className="fieldWrapper">
       <label htmlFor={identifier}>{label}</label>
       <div className="inputWrapper">
         <input
-          ref={ref}
+          ref={inputRef}
           type={type}
           id={identifier}
           onChange={(e) => handleChange(identifier, e.target.value)}
@@ -24,11 +42,11 @@ const Index = forwardRef(({
           value={value}
           className="input-field"
         />
-        {suffix}
+        {enableShowPassword && (getInputSuffix())}
       </div>
     </div>
   );
-});
+};
 
 Index.propTypes = {
   label: PropTypes.string,
@@ -37,7 +55,7 @@ Index.propTypes = {
   type: PropTypes.string,
   identifier: PropTypes.string,
   placeholder: PropTypes.string,
-  suffix: PropTypes.element,
+  enableShowPassword: PropTypes.bool,
 };
 
 Index.defaultProps = {
@@ -47,7 +65,7 @@ Index.defaultProps = {
   type: "",
   identifier: "",
   placeholder: "Enter",
-  suffix: <></>,
+  enableShowPassword: false,
 };
 
 export default Index;

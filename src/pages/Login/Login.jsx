@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase from "firebase/compat/app";
 import { toast } from "react-toastify";
@@ -21,26 +21,10 @@ import {
 const Login = () => {
   const [userInfo, setUserInfo] = useState(USER_INFO_INITIAL_STATE);
   const [showFullPageLoader, setShowFullPageLoader] = useState(false);
-  const passwordRef = useRef();
   const navigate = useNavigate();
 
   const handleUserInfoChange = (field, value) => {
     setUserInfo({ ...userInfo, [field]: value });
-  };
-
-  const handleShowPasswordToggle = () => {
-    if (passwordRef && passwordRef.current) {
-      const currentType = passwordRef.current.type;
-      passwordRef.current.type = currentType === "text" ? "password" : "text";
-    }
-  };
-
-  const getInputSuffix = () => {
-    return (
-      <span onClick={handleShowPasswordToggle} style={{ cursor: "pointer" }}>
-        Show
-      </span>
-    );
   };
 
   const { email, password } = userInfo;
@@ -86,13 +70,12 @@ const Login = () => {
           handleChange={handleUserInfoChange}
         />
         <Input
+          enableShowPassword
           label="Password"
           identifier="password"
           type="password"
           value={password}
           handleChange={handleUserInfoChange}
-          suffix={getInputSuffix()}
-          ref={passwordRef}
         />
         <Button title="LOGIN" handleClick={handleSignIn} />
         <hr />

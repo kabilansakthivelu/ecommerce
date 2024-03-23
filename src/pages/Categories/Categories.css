@@ -15,7 +15,7 @@
 }
 
 .category--input {
-  @apply checked:accent-black scale-150;
+  @apply checked:accent-black scale-150 cursor-pointer;
 }
 
 .category--label {

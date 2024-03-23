@@ -7,5 +7,5 @@
 }
 
 .input-field {
-  @apply w-[85%] h-full outline-none;
+  @apply w-[80%] md:w-[90%] h-full outline-none;
 }

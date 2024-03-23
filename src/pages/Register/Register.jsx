@@ -8,6 +8,7 @@ import SectionInfo from "../../components/SectionInfo";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
+import FullPageLoader from "../../components/FullPageLoader";
 import {
   HEADING,
   REDIRECTION_TEXT,
@@ -17,6 +18,7 @@ import {
 
 const Register = () => {
   const [newUserInfo, setNewUserInfo] = useState(NEW_USER_INFO_INITIAL_STATE);
+  const [showFullPageLoader, setShowFullPageLoader] = useState(false);
   const navigate = useNavigate();
 
   const handleNewUserInfoChange = (field, value) => {
@@ -30,6 +32,7 @@ const Register = () => {
     if (!name.trim().length) {
       toast.error("Please enter a valid username.", { position: "top-right" });
     } else {
+      setShowFullPageLoader(true);
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
         await db
@@ -41,12 +44,15 @@ const Register = () => {
         let error1 = error.message.split(":");
         let error2 = error1[1].split("(");
         toast.error(error2[0], { position: "top-right" });
+      } finally {
+        setShowFullPageLoader(false);
       }
     }
   };
 
   return (
     <ComponentWrapper>
+      {showFullPageLoader && <FullPageLoader />}
       <SectionInfo showHeading heading="Create your account" />
       <form>
         <Input
@@ -64,6 +70,7 @@ const Register = () => {
           handleChange={handleNewUserInfoChange}
         />
         <Input
+          enableShowPassword
           label="Password"
           identifier="password"
           type="password"
