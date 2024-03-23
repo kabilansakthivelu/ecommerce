@@ -90,7 +90,7 @@ const Categories = () => {
                 <div key={name} className="category">
                   <input
                     type="checkbox"
-                    checked={preferredCategories[name]}
+                    checked={!!preferredCategories[name]}
                     className="category--input"
                     onChange={(e) => handleCategorySelection(e, name)}
                   />

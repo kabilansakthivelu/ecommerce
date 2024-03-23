@@ -9,3 +9,7 @@
 .input-field {
   @apply w-[80%] md:w-[90%] h-full outline-none;
 }
+
+.showPassword--controller {
+  @apply cursor-pointer underline;
+}

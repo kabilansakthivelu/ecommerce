@@ -24,7 +24,7 @@ const Index = ({
 
   const getInputSuffix = () => {
     return (
-      <span onClick={handleShowPasswordToggle} style={{ cursor: "pointer" }}>
+      <span onClick={handleShowPasswordToggle} className="showPassword--controller">
         {showPassword ? 'Hide' : 'Show'}
       </span>
     );

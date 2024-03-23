@@ -1,0 +1,7 @@
+.otp--inputWrapper {
+  @apply flex gap-x-2 items-center justify-center my-10;
+}
+
+.otp--input {
+  @apply w-8 h-8 md:w-12 md:h-12 border-2 rounded-md border-gray-400 p-2 text-center;
+}

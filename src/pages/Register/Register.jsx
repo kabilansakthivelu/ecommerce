@@ -39,7 +39,7 @@ const Register = () => {
           .collection("users")
           .doc(auth.currentUser.uid)
           .set({ name });
-        navigate("/");
+        navigate("/emailVerification");
       } catch (error) {
         let error1 = error.message.split(":");
         let error2 = error1[1].split("(");
@@ -53,7 +53,7 @@ const Register = () => {
   return (
     <ComponentWrapper>
       {showFullPageLoader && <FullPageLoader />}
-      <SectionInfo showHeading heading="Create your account" />
+      <SectionInfo showHeading heading={HEADING} />
       <form>
         <Input
           label="Name"

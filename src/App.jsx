@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Categories from "./pages/Categories";
+import EmailVerification from "./pages/EmailVerification";
 import Header from "./components/Header";
 import Banner from "./components/Banner";
 import { BANNER_CONTENT } from "./utils/constants";
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route exact path="/" element={<Categories />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/emailVerification" element={<EmailVerification />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<>Page not found</>} />
         </Routes>
