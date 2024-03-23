@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase from "firebase/compat/app";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { auth, db } from "../../firebase";
 import ComponentWrapper from "../../components/ComponentWrapper";
 import SectionInfo from "../../components/SectionInfo";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
+import FullPageLoader from "../../components/FullPageLoader";
 import {
   HEADING,
   SUB_HEADING,
@@ -19,6 +20,7 @@ import {
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState(USER_INFO_INITIAL_STATE);
+  const [showFullPageLoader, setShowFullPageLoader] = useState(false);
   const passwordRef = useRef();
   const navigate = useNavigate();
 
@@ -45,6 +47,7 @@ const Login = () => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setShowFullPageLoader(true);
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       await db
@@ -57,12 +60,15 @@ const Login = () => {
     } catch (error) {
       let error1 = error.message.split(":");
       let error2 = error1[1].split("(");
-      toast.error(error2[0], { position: 'top-right' });
+      toast.error(error2[0], { position: "top-right" });
+    } finally {
+      setShowFullPageLoader(false);
     }
   };
 
   return (
     <ComponentWrapper>
+      {showFullPageLoader && <FullPageLoader />}
       <SectionInfo
         showHeading
         showSubHeading

@@ -2,10 +2,13 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../firebase";
 import Login from '../pages/Login';
 
-const withAuthentication = (wrappedComponent) => {
+const withAuthentication = (WrappedComponent) => {
   const UpdatedComponent = () => {
     const [user] = useAuthState(auth);
-    return user ? <wrappedComponent /> : <Login />;
+    if (!user) {
+      return <Login />;
+    }
+    return <WrappedComponent />;
   }
   return UpdatedComponent;
 }
